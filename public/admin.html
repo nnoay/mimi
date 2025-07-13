@@ -1,0 +1,60 @@
+<!-- public/admin.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Rendez-vous</title>
+  <style>
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background-color: #f2f2f2; }
+    button { padding: 5px 10px; }
+  </style>
+</head>
+<body>
+  <h2>Liste des rendez-vous</h2>
+  <table id="appointments">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Téléphone</th> <!-- Added phone column -->
+        <th>Date</th>
+        <th>Heure</th>
+        <th>Service</th>
+        <th>Supprimer</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    fetch('/appointments?admin=1') // 👈 secure access
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector('#appointments tbody');
+        data.forEach((appt, index) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${appt.name}</td>
+            <td>${appt.email}</td>
+            <td>${appt.phone}</td> <!-- Display phone number -->
+            <td>${appt.date}</td>
+            <td>${appt.time}</td>
+            <td>${appt.service}</td>
+            <td><button onclick="deleteAppt(${index})">🗑️</button></td>
+          `;
+          tbody.appendChild(row);
+        });
+      });
+
+    function deleteAppt(index) {
+      if (confirm("Supprimer ce rendez-vous ?")) {
+        fetch(`/delete/${index}?admin=1`, { method: 'DELETE' })
+          .then(res => res.text())
+          .then(() => location.reload());
+      }
+    }
+  </script>
+</body>
+</html>

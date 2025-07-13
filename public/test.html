@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+    
+    <section id="appointment">
+  <div class="container">
+    <h2>Prendre Rendez-vous</h2>
+    <form class="form" action="/book" method="POST">
+      <label for="name">Nom complet</label>
+      <input type="text" id="name" name="name" placeholder="Votre nom" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="exemple@email.com" required />
+
+      <label for="phone">Téléphone</label>
+      <input type="tel" id="phone" name="phone" placeholder="Votre numéro" required />
+
+      <label for="service">Service souhaité</label>
+      <select id="service" name="service" required>
+        <option value="">-- Choisissez un service --</option>
+        <option value="botox">Botox</option>
+        <option value="hyaluronique">Acide Hyaluronique</option>
+        <option value="laser">Laser Soprano</option>
+        <option value="microneedling">Microneedling</option>
+      </select>
+
+      <label for="date">Date souhaitée</label>
+      <input type="date" id="date" name="date" required />
+<label for="time">Heure souhaitée</label>
+<select id="time" name="time" required>
+  <option value="">-- Choisissez une heure --</option>
+  <option value="08:00">08:00 - 09:00</option>
+  <option value="09:00">09:00 - 10:00</option>
+  <option value="10:00">10:00 - 11:00</option>
+  <option value="11:00">11:00 - 12:00</option>
+  <option value="12:00">12:00 - 13:00</option>
+  <option value="12:00">13:00 - 14:00</option>
+  <option value="12:00">14:00 - 15:00</option>
+  <option value="12:00">15:00 - 16:00</option>
+
+</select>
+
+
+      
+
+      <button type="submit">Envoyer</button>
+    </form>
+  </div>
+</section>
+
+
+</body>
+</html>
